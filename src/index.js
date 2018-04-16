@@ -7,7 +7,7 @@ class Summary extends React.Component {
   static propTypes = {
     ingredients: PropTypes.number.isRequired,
     steps: PropTypes.number.isRequired,
-    title: PropTypes.string
+    title: (props, propName) => (typeof props[propName] !== 'string') ? new Error('A title must be a string') : (props[propName].length > 20) ? new Error('title is over 20 characters') : null
   };
 
   static defaultProps = {
@@ -30,5 +30,45 @@ class Summary extends React.Component {
   }
 }
 
-// ReactDOM.render(<Summary title="Peanut Butter and Jelly" ingredients="peanut butter, jelly, bread" steps="spread peanut butter and jelly between bread" />, document.getElementById('root'));
-ReactDOM.render(<Summary />, document.getElementById('root'));
+ReactDOM.render(<Summary title="Peanut Butter and Jelly" ingredients="peanut butter, jelly, bread" steps="spread peanut butter and jelly between bread" />, document.getElementById('root'));
+
+class AddColorForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.submit = this.submit.bind(this);
+  }
+
+  static propTypes = {
+    onNewColor: PropTypes.func
+  };
+
+  static defaultProps = {
+    onNewColor: f => f
+  };
+
+  submit(e) {
+    const { _title, _color } = this.refs;
+    e.preventDefault();
+    this.props.onNewColor(_title.value, _color.value);
+    _title.value = '';
+    _color.value = '#000000';
+    _title.focus();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.submit}>
+        <input ref='_title' type='text' placeholder='color title...' required />
+        <input ref='_color' type='color' required />
+        <button>ADD</button>
+      </form>  
+    );
+  }
+}
+
+const logColor = (title, color) => {
+  console.log(`TODO: add ${title} and ${color} to the list`);
+  console.log(`TODO: render UI with new Color`);
+};
+
+ReactDOM.render(<AddColorForm onNewColor={ logColor }/>, document.getElementById('color-organizer'));
