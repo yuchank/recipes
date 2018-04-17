@@ -57,7 +57,7 @@ class AddColorForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.submit}>
+      <form onSubmit={ this.submit }>
         <input ref='_title' type='text' placeholder='color title...' required />
         <input ref='_color' type='color' required />
         <button>ADD</button>
@@ -67,8 +67,55 @@ class AddColorForm extends React.Component {
 }
 
 const logColor = (title, color) => {
-  console.log(`TODO: add ${title} and ${color} to the list`);
+  console.log(`TODO: add ${ title } and ${ color } to the list`);
   console.log(`TODO: render UI with new Color`);
 };
 
 ReactDOM.render(<AddColorForm onNewColor={ logColor }/>, document.getElementById('color-organizer'));
+
+const Star = ({ selected = false, onClick = f => f }) => 
+  <div className={ selected ? 'star selected' : 'star' } onClick={ onClick }></div>
+
+Star.propTypes = {
+  selected: PropTypes.bool,
+  onClick: PropTypes.func
+};
+
+// ReactDOM.render(<Star selected={ true } onClick={ () => console.log('Star Click') } />, document.getElementById('star'));
+
+class StarRating extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      starsSelected: 0
+    };
+    this.change = this.change.bind(this);
+  }
+
+  static PropTypes = {
+    totalStars: PropTypes.number
+  };
+
+  static defaultProps = {
+    totalStars: 5
+  };
+
+  change(starsSelected) {
+    this.setState({ starsSelected });
+    // after every setState call, the render function is called, updating the state with the new UI.
+  }
+
+  render() {
+    const { totalStars } = this.props;
+    const { starsSelected } = this.state;
+
+    return (
+      <div className='star-rating'>
+        {[...Array(totalStars)].map((n, i) => <Star key={ i } selected={ i < starsSelected } onClick={ () => this.change(i + 1) } />)}
+        <p>{ starsSelected } of { totalStars }</p>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<StarRating />, document.getElementById('star'));
