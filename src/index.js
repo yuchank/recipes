@@ -87,7 +87,7 @@ class StarRating extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      starsSelected: 0
+      starsSelected: props.starsSelected || 0
     };
     this.change = this.change.bind(this);
   }
