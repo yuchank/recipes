@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import './index.css';
+import './index.scss';
 
 import { Component } from 'react';
 
