@@ -1,10 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
+
 import App from './App';
+import MemberList from './MemberList'
 
 window.React = React;
 
 render(<App />, document.getElementById('app'));
+render(<MemberList count={ 5 }/>, document.getElementById('member-list'));
 
 // import ReactDOM from 'react-dom';
 // import PropTypes from 'prop-types';
