@@ -35,6 +35,17 @@ export default class MemberList extends React.Component {
     console.log('componentWillMount');
   }
 
+  componentDidMount() {
+    console.log('componentDidMount: just after the component has rendered');
+    console.log('componentDidMount: initialize 3rd party JavaScript which require a DOM');
+    console.log('componentDidMount: start background process like intervals or timers');
+    console.log('componentDidMount: initialize 3rd party JavaScript which require a DOM');
+  }
+  
+  componentWillUnmount() {
+    console.log('componentWillUnmount: clean up');
+  }
+
   componentWillUpdate() {
     console.log('updating lifecycle');
   }
