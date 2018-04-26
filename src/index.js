@@ -1,13 +1,16 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { render, unmountComponentAtNode } from 'react-dom';
 
 import App from './App';
-import MemberList from './MemberList'
+import MemberList from './MemberList';
+import Clock from './Clock';
 
 window.React = React;
 
 render(<App />, document.getElementById('app'));
 render(<MemberList count={ 5 }/>, document.getElementById('member-list'));
+let clock = document.getElementById('clock');
+render(<Clock onClose={ () => unmountComponentAtNode(clock) }/>, clock);
 
 // import ReactDOM from 'react-dom';
 // import PropTypes from 'prop-types';
