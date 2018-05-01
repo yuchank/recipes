@@ -12,12 +12,24 @@ export default class LifeCycle extends React.Component {
   }
 
   componentDidMount() {
+    // DOM 
   }
   
   componentWillUnmount() {
   }
 
+  componentWillReceiveProps() {
+    // setState()    
+  }
+
+  shouldComponentUpdate() {
+  }
+
   componentWillUpdate() {
+  }
+
+  componentDidUpdate() {
+    // DOM
   }
 
   render() {
