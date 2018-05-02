@@ -1,6 +1,8 @@
 import React from 'react';
 
 export default class LifeCycle extends React.Component {
+  
+  // Mounting lifecycle: 1. constructor
   constructor() {
     super();
     this.state = {
@@ -8,30 +10,11 @@ export default class LifeCycle extends React.Component {
     }
   }
 
+  // 2. 
   componentWillMount() {
   }
 
-  componentDidMount() {
-    // DOM 
-  }
-  
-  componentWillUnmount() {
-  }
-
-  componentWillReceiveProps() {
-    // setState()    
-  }
-
-  shouldComponentUpdate() {
-  }
-
-  componentWillUpdate() {
-  }
-
-  componentDidUpdate() {
-    // DOM
-  }
-
+  // 3.
   render() {
     const { error } = this.state;
     return(
@@ -40,4 +23,34 @@ export default class LifeCycle extends React.Component {
       </div>
     );
   }
+  
+  // 4.
+  componentDidMount() {
+    // DOM available
+  }
+  
+  // 5.
+  componentWillUnmount() {
+  }
+
+  // Updating lifecycle: 1.
+  componentWillReceiveProps() {
+    // call setState()    
+  }
+
+  // 2.
+  shouldComponentUpdate() {
+  }
+
+  // 3.
+  componentWillUpdate() {
+  }
+
+  // 4. render()
+
+  // 5.
+  componentDidUpdate() {
+    // DOM available
+  }
+
 }
